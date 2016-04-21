@@ -28,8 +28,8 @@ foreach($iterator as $fileInfo) {
             $urlComponents = parse_url($url);
             $file = $urlComponents['path'];
             if(preg_match("/^.*\.(jpg|jpeg|png|gif|css|woff|woff2|eot|js)$/i", $file, $outputData)) {
-               if(!empty($outputData[1])) {
-                  $assetName = $outputData[1];
+               if(!empty($outputData[0])) {
+                  $assetName = $outputData[0];
                   if(!isset($items[$assetName])) {
                      $items[$assetName] = 0;
                   }
