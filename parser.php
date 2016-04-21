@@ -21,8 +21,8 @@ foreach($iterator as $fileInfo) {
 
    foreach ($lines as $line) {
       $entry = $parser->parse($line);
-      if(!empty($entry['request'])) {
-         if(preg_match("/(.*) (.*) (.*)/U", $entry['request'], $output)) {
+      if(!empty($entry->request)) {
+         if(preg_match("/(.*) (.*) (.*)/U", $entry->request, $output)) {
             $uri = $output[2];
             $url = "http://www.talentwise.com" . $uri;
             $urlComponents = parse_url($url);
