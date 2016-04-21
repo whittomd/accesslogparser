@@ -14,7 +14,9 @@ $parser = new \Kassner\LogParser\LogParser();
 
 foreach($iterator as $fileInfo) {
    //echo $fileInfo->getFilename() . "<br>\n";
-   $lines = file($path . '/' . $fileInfo->getFilename(), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+   $fileName = $path . '/' . $fileInfo->getFilename();
+   echo "$fileName: " . file_exists($fileName) . PHP_EOL;
+   $lines = file($fileName, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
    foreach ($lines as $line) {
       $entry = $parser->parse($line);
       print_r($entry);
