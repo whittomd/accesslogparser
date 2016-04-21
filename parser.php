@@ -17,7 +17,7 @@ foreach($iterator as $fileInfo) {
    $fileName = $path . '/' . $fileInfo->getFilename();
    echo "$fileName: " . file_exists($fileName) . PHP_EOL;
    $lines = file($fileName, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-   print_r($lines);
+
    foreach ($lines as $line) {
       $entry = $parser->parse($line);
       print_r($entry);
