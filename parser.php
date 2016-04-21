@@ -7,6 +7,7 @@
  */
 require_once 'vendor/autoload.php';
 $pattern = $argv[1];
+echo $pattern . PHP_EOL;
 $iterator = new GlobIterator($pattern);
 print_r(iterator_to_array($iterator));
 foreach($iterator as $fileInfo) {
