@@ -6,7 +6,7 @@
  * Time: 12:18 PM
  */
 require_once 'vendor/autoload.php';
-$pattern = argv(2);
+$pattern = $argv[1];
 $iterator = new GlobIterator($pattern);
 foreach($iterator as $fileInfo) {
    echo $fileInfo->getFilename() . "<br>\n";
