@@ -12,6 +12,7 @@ echo $pattern . PHP_EOL;
 $iterator = new GlobIterator($path . '/' . $pattern);
 $parser = new \Kassner\LogParser\LogParser();
 $parser->setFormat("%V\t%h\t%l\t%u\t%t\t\"%r\"\t%>s\t%b\t%D\t\"%{Referer}i\"\t\"%{User-Agent}i\"\t\"%{PHPSESSID}i\"");
+echo $parser->getPCRE();
 $items = array();
 foreach($iterator as $fileInfo) {
    //echo $fileInfo->getFilename() . "<br>\n";
