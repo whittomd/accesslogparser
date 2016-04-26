@@ -58,18 +58,8 @@ foreach($iterator as $fileInfo) {
    }
 }
 
-$finalItems = array();
-foreach($items as $url => $count) {
-   $file = file_get_contents($url);
-
-
-   if(empty($finalItems[$file])) {
-      $finalItems[$file] = $count;
-   } else {
-      $finalItems[$file] += $count;
-   }
-}
-print_r($finalItems);
+$jsonEncodedItems = json_encode($items);
+file_put_contents('output.json', $jsonEncodedItems);
 //
 //
 //foreach ($lines as $line) {
