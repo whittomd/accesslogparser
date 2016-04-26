@@ -16,7 +16,7 @@ foreach($items as $url => $count) {
 
    $file = file_get_contents($url);
    if(empty($file)) {
-      $url = str_replace('.min', '', $url);
+      $url = str_replace(array('.min', 'minified/'), array('', ''), $url);
       $file = file_get_contents($url);
    }
    echo "Working: $url => $file\n";
