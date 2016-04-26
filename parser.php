@@ -30,18 +30,13 @@ foreach($iterator as $fileInfo) {
          if (!empty($entry->request)) {
             if (preg_match("/(.*) (.*) (.*)/U", $entry->request, $output)) {
                $uri = $output[2];
-               $url = "http://www.talentwise.com" . $uri;
+               $url = "http://{$entry->canonicalServerName}$uri";
                $urlComponents = parse_url($url);
                $file = $urlComponents['path'];
                if (preg_match("/^.*\.(jpg|jpeg|png|gif|css|woff|woff2|eot|js)$/i", $file, $outputData)) {
                   if (!empty($outputData[0])) {
-                     $assetName = $outputData[0];
-                     $assetNameParts = explode('/', $assetName);
-                     if(in_array($assetNameParts[2], array('templates', 'javascript', 'screening'))) {
-                        array_shift($assetNameParts);
-                        array_shift($assetNameParts);
-                        $assetName = implode('/', $assetNameParts);
-                     }
+                     $assetName = $url;
+
                      if (!isset($items[$assetName])) {
                         $items[$assetName] = 0;
                      }
