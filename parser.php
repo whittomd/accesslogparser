@@ -25,23 +25,27 @@ foreach($iterator as $fileInfo) {
    }
 
    foreach ($lines as $line) {
-      $entry = $parser->parse($line);
-      if(!empty($entry->request)) {
-         if(preg_match("/(.*) (.*) (.*)/U", $entry->request, $output)) {
-            $uri = $output[2];
-            $url = "http://www.talentwise.com" . $uri;
-            $urlComponents = parse_url($url);
-            $file = $urlComponents['path'];
-            if(preg_match("/^.*\.(jpg|jpeg|png|gif|css|woff|woff2|eot|js)$/i", $file, $outputData)) {
-               if(!empty($outputData[0])) {
-                  $assetName = $outputData[0];
-                  if(!isset($items[$assetName])) {
-                     $items[$assetName] = 0;
+      try {
+         $entry = $parser->parse($line);
+         if (!empty($entry->request)) {
+            if (preg_match("/(.*) (.*) (.*)/U", $entry->request, $output)) {
+               $uri = $output[2];
+               $url = "http://www.talentwise.com" . $uri;
+               $urlComponents = parse_url($url);
+               $file = $urlComponents['path'];
+               if (preg_match("/^.*\.(jpg|jpeg|png|gif|css|woff|woff2|eot|js)$/i", $file, $outputData)) {
+                  if (!empty($outputData[0])) {
+                     $assetName = $outputData[0];
+                     if (!isset($items[$assetName])) {
+                        $items[$assetName] = 0;
+                     }
+                     $items[$assetName]++;
                   }
-                  $items[$assetName]++;
                }
             }
          }
+      } catch (\Exception $e) {
+
       }
    }
 }
