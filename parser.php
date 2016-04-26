@@ -36,6 +36,11 @@ foreach($iterator as $fileInfo) {
                if (preg_match("/^.*\.(jpg|jpeg|png|gif|css|woff|woff2|eot|js)$/i", $file, $outputData)) {
                   if (!empty($outputData[0])) {
                      $assetName = $outputData[0];
+                     $assetNameParts = explode('/', $assetName);
+                     if(in_array($assetNameParts[1], array('templates', 'javascript'))) {
+                        array_shift($assetNameParts);
+                        $assetName = implode('/', $assetNameParts);
+                     }
                      if (!isset($items[$assetName])) {
                         $items[$assetName] = 0;
                      }
