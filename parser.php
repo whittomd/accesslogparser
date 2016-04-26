@@ -30,17 +30,23 @@ foreach($iterator as $fileInfo) {
          if (!empty($entry->request)) {
             if (preg_match("/(.*) (.*) (.*)/U", $entry->request, $output)) {
                $uri = $output[2];
-               $url = "http://{$entry->canonicalServerName}$uri";
-               $urlComponents = parse_url($url);
-               $file = $urlComponents['path'];
-               if (preg_match("/^.*\.(jpg|jpeg|png|gif|css|woff|woff2|eot|js)$/i", $file, $outputData)) {
-                  if (!empty($outputData[0])) {
-                     $assetName = $url;
+               $serverName = $entry->canonicalServerName;
+               if(strpos($serverName, 'talentwise.com')) {
+                  $serverNameParts = explode('.talentwise.com', $serverName);
+                  $serverName = $serverNameParts[0] . '.dvm-dwhittom2.sea.talentwise.com';
 
-                     if (!isset($items[$assetName])) {
-                        $items[$assetName] = 0;
+                  $url = "http://{$serverName}{$uri}";
+                  $urlComponents = parse_url($url);
+                  $file = $urlComponents['path'];
+                  if (preg_match("/^.*\.(jpg|jpeg|png|gif|css|woff|woff2|eot|js)$/i", $file, $outputData)) {
+                     if (!empty($outputData[0])) {
+                        $assetName = $url;
+
+                        if (!isset($items[$assetName])) {
+                           $items[$assetName] = 0;
+                        }
+                        $items[$assetName]++;
                      }
-                     $items[$assetName]++;
                   }
                }
             }
