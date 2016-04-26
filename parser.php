@@ -38,6 +38,7 @@ foreach($iterator as $fileInfo) {
                   $url = "http://{$serverName}{$uri}";
                   $urlComponents = parse_url($url);
                   $file = $urlComponents['path'];
+                  $file = str_replace('.min', '', $file);
                   if (preg_match("/^.*\.(jpg|jpeg|png|gif|css|woff|woff2|eot|js)$/i", $file, $outputData)) {
                      if (!empty($outputData[0])) {
                         $assetName = $url;
@@ -60,7 +61,7 @@ foreach($iterator as $fileInfo) {
 $finalItems = array();
 foreach($items as $url => $count) {
    $file = file_get_contents($url);
-   echo "File: $url => $file\n";
+
 
    if(empty($finalItems[$file])) {
       $finalItems[$file] = $count;
