@@ -37,7 +37,8 @@ foreach($iterator as $fileInfo) {
                   if (!empty($outputData[0])) {
                      $assetName = $outputData[0];
                      $assetNameParts = explode('/', $assetName);
-                     if(in_array($assetNameParts[2], array('templates', 'javascript'))) {
+                     if(in_array($assetNameParts[2], array('templates', 'javascript', 'screening'))) {
+                        array_shift($assetNameParts);
                         array_shift($assetNameParts);
                         $assetName = implode('/', $assetNameParts);
                      }
