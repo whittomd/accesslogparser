@@ -60,7 +60,7 @@ foreach($iterator as $fileInfo) {
 $finalItems = array();
 foreach($items as $url => $count) {
    $file = file_get_contents($url);
-   echo "File: file\n";
+   echo "File: $file\n";
 
    if(empty($finalItems[$file])) {
       $finalItems[$file] = $count;
