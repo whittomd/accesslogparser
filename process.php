@@ -15,6 +15,10 @@ $finalItems = array();
 foreach($items as $url => $count) {
 
    $file = file_get_contents($url);
+   if(empty($file)) {
+      $url = str_replace('.min', '', $url);
+      $file = file_get_contents($url);
+   }
    echo "Working: $url => $file\n";
 
    if(empty($finalItems[$file])) {
