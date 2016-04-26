@@ -57,7 +57,18 @@ foreach($iterator as $fileInfo) {
    }
 }
 
-print_r($items);
+$finalItems = array();
+foreach($items as $url => $count) {
+   $file = file_get_contents($url);
+   echo "File: file\n";
+
+   if(empty($finalItems[$file])) {
+      $finalItems[$file] = $count;
+   } else {
+      $finalItems[$file] += $count;
+   }
+}
+print_r($finalItems);
 //
 //
 //foreach ($lines as $line) {
