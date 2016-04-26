@@ -13,8 +13,9 @@ $data = file_get_contents($path);
 $items = json_decode($data, true);
 $finalItems = array();
 foreach($items as $url => $count) {
-   $file = file_get_contents($url);
 
+   $file = file_get_contents($url);
+   echo "Working: $url => $file\n";
 
    if(empty($finalItems[$file])) {
       $finalItems[$file] = $count;
