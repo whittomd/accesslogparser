@@ -19,7 +19,7 @@ foreach($items as $file => $count) {
       $pathData = pathinfo($file);
       $fileSize = filesize($file);
       $totalFileSize = $count * $fileSize;
-      echo sprintf("%-255s\t%d\t%d\t%d\t", $file, strlen($file), $fileSize, $count, $totalFileSize) . PHP_EOL;
+      echo sprintf("%-255s\t%d\t%d\t%d\t", $file, $fileSize, $count, $totalFileSize) . PHP_EOL;
       /**if ($pathData['extension'] === 'css') {
        * $minifier = new Minify\CSS($file);
        * $outputFile = '/tmp/' . $file;
