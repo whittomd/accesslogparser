@@ -10,6 +10,7 @@
     }
   ],
   "require": {
-    "kassner/log-parser": "~1.0"
+    "kassner/log-parser": "~1.0",
+    "matthiasmullie/minify": "^1.3"
   }
 }
