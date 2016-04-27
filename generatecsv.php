@@ -15,6 +15,7 @@ $data = file_get_contents($path);
 $items = json_decode($data, true);
 
 foreach($items as $file => $count) {
+   echo "Working with $file\n";
    if(!empty($file) && file_exists($file)) {
       $pathData = pathinfo($file);
       $fileSize = filesize($file);
