@@ -15,17 +15,19 @@ $data = file_get_contents($path);
 $items = json_decode($data, true);
 
 foreach($items as $file => $count) {
-   $pathData = pathinfo($file);
-   $fileSize = filesize($file);
-   $totalFileSize = $count * $fileSize;
-   sprintf("%s\t%10d\t%2d\t%10d", $file, $fileSize, $count, $totalFileSize);
-   /**if ($pathData['extension'] === 'css') {
-      $minifier = new Minify\CSS($file);
-      $outputFile = '/tmp/' . $file;
-      $minifier->minify($outputFile);
-   } elseif ($pathData['extension'] === 'js') {
-
-   } else {
-
-   }*/
+   if(!empty($file)) {
+      $pathData = pathinfo($file);
+      $fileSize = filesize($file);
+      $totalFileSize = $count * $fileSize;
+      sprintf("%s\t%10d\t%2d\t%10d", $file, $fileSize, $count, $totalFileSize);
+      /**if ($pathData['extension'] === 'css') {
+       * $minifier = new Minify\CSS($file);
+       * $outputFile = '/tmp/' . $file;
+       * $minifier->minify($outputFile);
+       * } elseif ($pathData['extension'] === 'js') {
+       *
+       * } else {
+       *
+       * }*/
+   }
 }
