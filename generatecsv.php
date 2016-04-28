@@ -14,12 +14,16 @@ $path = $argv[1];
 $data = file_get_contents($path);
 $items = json_decode($data, true);
 
-foreach($items as $file => $count) {
+foreach($items as $file => $data) {
+   $total = 0;
+   foreach($data['urls'] as $url => $count) {
+      $total += $count;
+   }
    if(!empty($file) && file_exists($file)) {
       $pathData = pathinfo($file);
       $fileSize = filesize($file);
-      $totalFileSize = $count * $fileSize;
-      echo sprintf("%-255s\t%d\t%d\t%d\t", $file, $fileSize, $count, $totalFileSize) . PHP_EOL;
+      $totalFileSize = $total * $fileSize;
+      echo sprintf("%-255s\t%d\t%d\t%d\t", $file, $fileSize, $total, $totalFileSize) . PHP_EOL;
       /**if ($pathData['extension'] === 'css') {
        * $minifier = new Minify\CSS($file);
        * $outputFile = '/tmp/' . $file;

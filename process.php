@@ -21,11 +21,7 @@ foreach($items as $url => $count) {
    }
    echo "Working: $url => $file\n";
 
-   if(empty($finalItems[$file])) {
-      $finalItems[$file] = $count;
-   } else {
-      $finalItems[$file] += $count;
-   }
+   $finalItems[$file]['urls'][$url] = $count;
 }
 
 $finalItemsJson = json_encode($finalItems);
