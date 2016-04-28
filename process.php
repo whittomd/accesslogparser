@@ -12,14 +12,17 @@ $path = $argv[1];
 $data = file_get_contents($path);
 $items = json_decode($data, true);
 $finalItems = array();
+$totalItems = count($items);
+echo "Starting to process $totalItems items\n";
+$index = 0;
 foreach($items as $url => $count) {
-
+   $index++;
    $file = file_get_contents($url);
    if(empty($file)) {
       $url = str_replace(array('.min', 'minified/'), array('', ''), $url);
       $file = file_get_contents($url);
    }
-   echo "Working: $url => $file\n";
+   echo "Item $index/$totalItems: Working: $url => $file\n";
 
    $finalItems[$file]['urls'][$url] = $count;
 }
