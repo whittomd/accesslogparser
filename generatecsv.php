@@ -40,8 +40,9 @@ foreach($items as $file => $data) {
       $aggregateFileSize += $fileSize;
       $aggregateTotalFileSize += $totalFileSize;
    }
-   echo sprintf("%-255s\t%d\t%d\t%d\t", "Totals", human_filesize($aggregateFileSize), $aggregateTotal, human_filesize($aggregateTotalFileSize)) . PHP_EOL;
 }
+echo sprintf("%-255s\t%d\t%d\t%d\t", "Totals", human_filesize($aggregateFileSize), $aggregateTotal, human_filesize($aggregateTotalFileSize)) . PHP_EOL;
+
 
 function human_filesize($bytes, $decimals = 2) {
    $sz = array(
