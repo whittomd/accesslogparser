@@ -41,18 +41,6 @@ foreach($items as $file => $data) {
       $aggregateTotalFileSize += $totalFileSize;
    }
 }
-echo sprintf("%-255s\t%d\t%d\t%d\t", "Totals", human_filesize($aggregateFileSize), $aggregateTotal, human_filesize($aggregateTotalFileSize)) . PHP_EOL;
+echo sprintf("%-255s\t%d\t%d\t%d\t", "Totals", $aggregateFileSize/(1024*1024), $aggregateTotal, $aggregateTotalFileSize/(1024*1024*1024)) . PHP_EOL;
 
 
-function human_filesize($bytes, $decimals = 8) {
-   $sz = array(
-      'B',
-      'K',
-      'M',
-      'G',
-      'T',
-      'P'
-   );
-   $factor = (int) floor((strlen($bytes) - 1) / 3);
-   return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . $sz[$factor];
-}
