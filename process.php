@@ -26,21 +26,19 @@ echo "Starting to process $totalItems items\n";
 $index = 0;
 foreach($items as $url => $count) {
    $index++;
-   if (empty($map[$url])) {
+   if (!isset($map[$url])) {
       $file = file_get_contents($url);
       if (empty($file)) {
          $url = str_replace(array('.min', 'minified/'), array('', ''), $url);
          $file = file_get_contents($url);
       }
       $map[$url] = $file;
-      if(empty($file)) {
-         $file = 'none';
-      }
       file_put_contents('map.txt', "$url|$file" . PHP_EOL, FILE_APPEND);
-   } elseif ($map[$url] === 'none') {
-      break;
-   } else {
+   } else if (!empty($map[$url])) {
       $file = $map[$url];
+
+   } else {
+      continue;
    }
    echo "Item $index/$totalItems: Working: $url => $file\n";
 
