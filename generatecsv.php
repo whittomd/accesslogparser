@@ -44,7 +44,7 @@ foreach($items as $file => $data) {
 echo sprintf("%-255s\t%d\t%d\t%d\t", "Totals", human_filesize($aggregateFileSize), $aggregateTotal, human_filesize($aggregateTotalFileSize)) . PHP_EOL;
 
 
-function human_filesize($bytes, $decimals = 2) {
+function human_filesize($bytes, $decimals = 8) {
    $sz = array(
       'B',
       'K',
