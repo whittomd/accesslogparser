@@ -27,5 +27,5 @@ foreach($items as $url => $count) {
    $finalItems[$file]['urls'][$url] = $count;
 }
 
-$finalItemsJson = json_encode($finalItems);
+$finalItemsJson = json_encode($finalItems, JSON_PRETTY_PRINT);
 file_put_contents('finaloutput.json', $finalItemsJson);
