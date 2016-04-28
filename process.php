@@ -33,7 +33,12 @@ foreach($items as $url => $count) {
          $file = file_get_contents($url);
       }
       $map[$url] = $file;
+      if(empty($file)) {
+         $file = 'none';
+      }
       file_put_contents('map.txt', "$url|$file" . PHP_EOL, FILE_APPEND);
+   } elseif ($map[$url] === 'none') {
+      break;
    } else {
       $file = $map[$url];
    }
